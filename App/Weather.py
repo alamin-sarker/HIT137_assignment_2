@@ -4,13 +4,14 @@ from Geocode import Geocode
 class Weather: 
     BASE_URL = "https://api.openweathermap.org/data/2.5/weather"
     API_KEY = "b9ae805fd470d789469e26f46158619e"
-    latitude = 0
-    longitude = 0
+    latitude = None
+    longitude = None
 
     def __init__(self):
         geocode = Geocode()
-        address = "1600+Amphitheatre+Parkway,+Mountain+View,+CA"
-        latitude, longitude = geocode.get_coordinates_from_address(address)
+        # address = "1600+Amphitheatre+Parkway,+Mountain+View,+CA"
+        address = "fasdajghsdghja"
+        self.latitude, self.longitude = geocode.get_coordinates_from_address(address)
 
     # https://api.openweathermap.org/data/2.5/weather?lat=37.4226618&lon=-122.0829302&appid=b9ae805fd470d789469e26f46158619e
     def get_weather_api_data(self): 

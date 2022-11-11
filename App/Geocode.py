@@ -4,7 +4,8 @@ class Geocode:
     API_KEY = "AIzaSyB4KZkzjMoyfx0w2jIq-xk9uIbGeIwehn8" 
     base_url = "https://maps.googleapis.com/maps/api/geocode/json"
 
-    def get_coordinates_from_address(self, address="1600+Amphitheatre+Parkway,+Mountain+View,+CA"):
+    # default address -> "1600+Amphitheatre+Parkway,+Mountain+View,+CA"
+    def get_coordinates_from_address(self, address="NT"):
         response = self.__get_geocode_api_response(address) 
         
         try:
@@ -12,7 +13,7 @@ class Geocode:
         except:     
             # TODO: Return the error code and error message
             print("[GEOCODE] ERROR: The API response was unsuccessful")
-            return 0, 0
+            return None, None
 
         latitude, longitude = self.__get_coordinates_from_response(response)
         return latitude, longitude
