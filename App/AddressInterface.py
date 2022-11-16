@@ -14,6 +14,8 @@ class AddressInterface:
     address = None
 
     def __init__(self, root):
+        self.weather_data = None
+        
         self.root = root 
 
         mainframe = ttk.Frame(self.root)
@@ -73,7 +75,7 @@ class AddressInterface:
 
             latitude, longitude = self.get_coordinates_from_address()
 
-            self.get_weather_from_coordinates(latitude, longitude)
+            self.weather_data = self.get_weather_from_coordinates(latitude, longitude)
 
             # print(f"House Number: {self.house_number}")
             # print(f"Street Name: {self.street_name}")
@@ -116,6 +118,10 @@ class AddressInterface:
             return weather_data
         except Exception as e: 
             messagebox.showerror('ERROR', e)
+
+
+    def get_weather_data(self):
+        return self.weather_data 
 
 
     def __create_form_entry(self, parent, entry_variable: StringVar, rowposition: int): 

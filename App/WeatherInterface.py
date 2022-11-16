@@ -72,11 +72,12 @@ class WeatherInterface:
         # exit and reset button
         Button(text='Exit',font=("Georgia",16,"bold"),bg='orange',fg='black',width=7,relief='groove',command=weather_root.destroy).place(x=680,y=420)
 
-        temperature['text'] = "foo"
-        humidity['text'] = "foo"
-        pressure['text'] = "foo"
-        vis['text'] = "foo"
-        sunrise['text'] = "Sunrise : foo"
-        sunset['text'] = "Sunset : foo"
+        temperature['text'] = f"{self.weather_data['temp']} ºC"
+        humidity['text'] = f"{self.weather_data['humidity']} %"
+        pressure['text'] = f"{self.weather_data['pressure']} mBar"
+        des['text'] = f"{self.weather_data['description']}"
+        vis['text'] = f"{self.weather_data['visibility']} km"
+        sunrise['text'] = f"{self.weather_data['sunrise']}"
+        sunset['text'] = f"{self.weather_data['sunset']}"
 
         weather_root.mainloop()
