@@ -1,0 +1,2 @@
+API Key (weather)= b9ae805fd470d789469e26f46158619e
+API Key (geocode by google)= AIzaSyB4KZkzjMoyfx0w2jIq-xk9uIbGeIwehn8
