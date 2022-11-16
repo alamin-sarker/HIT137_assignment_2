@@ -37,7 +37,7 @@ class FormatWeatherData:
         self.data['sunrise'] = sunrise 
         self.data['sunset'] = sunset
 
-        self.data['image_icon_url'] = f"http://openweathermap.org/img/wn/{self.weather_data['weather'][0]['icon']}.png" 
+        self.data['image_icon_url'] = f"http://openweathermap.org/img/wn/{self.weather_data['weather'][0]['icon']}@2x.png" 
 
         return self.data
 
