@@ -1,7 +1,9 @@
 from tkinter import * 
 from tkinter import ttk 
+from tkinter import messagebox
 from Geocode import Geocode
 from Weather import Weather
+from WeatherInterface import WeatherInterface
 
 class AddressInterface:
     house_number = None
@@ -11,19 +13,16 @@ class AddressInterface:
     postcode = None
     address = None
 
-    def __init__(self): 
-        # root window
-        root = Tk()
-        root.geometry("500x300")
-        root.title("Weather Information")
+    def __init__(self, root):
+        self.root = root 
 
-        mainframe = ttk.Frame(root)
+        mainframe = ttk.Frame(self.root)
         mainframe['padding'] = 20   # padding inside frame 
         mainframe.grid(column=0, row=0, sticky=(N, S, E, W))
 
         # Expand the frame if the window is resized
-        root.columnconfigure(0, weight = 1)
-        root.rowconfigure(0, weight = 1)
+        self.root.columnconfigure(0, weight = 1)
+        self.root.rowconfigure(0, weight = 1)
 
         # Heading Label
         heading_label_style = ttk.Style()
@@ -72,9 +71,9 @@ class AddressInterface:
             
             self.parse_address()
 
-            self.get_coordinates_from_address()
+            latitude, longitude = self.get_coordinates_from_address()
 
-            self.get_coordinates_from_address()
+            self.get_weather_from_coordinates(latitude, longitude)
 
             # print(f"House Number: {self.house_number}")
             # print(f"Street Name: {self.street_name}")
@@ -82,20 +81,19 @@ class AddressInterface:
             # print(f"State: {self.state}")
             # print(f"Postcode: {self.postcode}")
 
+            self.root.destroy()
+
         # Get Weather information button 
         address_button = ttk.Button(mainframe, text = "Show weather", command = getAddress)
         address_button.grid(column = 0, row = 7)
 
         # Get Weather information button 
-        exit_button = ttk.Button(mainframe, text = "Exit", command = root.destroy)
+        exit_button = ttk.Button(mainframe, text = "Exit", command = self.root.destroy)
         exit_button.grid(column = 1, row = 7)
-
-        root.mainloop()
-
     
     def parse_address(self): 
-        if (self.house_number is '') or (self.street_name is '') or (self.suburb is '') or (self.state is ''):  
-            raise Exception("[ADDRESS]: Enter a valid address")
+        if (self.house_number == '') or (self.street_name == '') or (self.suburb == '') or (self.state == ''):  
+            messagebox.showerror('ERROR', "[ADDRESS]: Enter a valid address")
 
         self.address = (f"{self.house_number}+{self.street_name},+{self.suburb},+{self.state}")
         print(f"[ADDRESS] Address: {self.address}")
@@ -105,9 +103,9 @@ class AddressInterface:
         try: 
             geocode = Geocode()
             latitude, longitude = geocode.get_coordinates_from_address(self.address)
-            self.get_weather_from_coordinates(latitude, longitude)
+            return latitude, longitude
         except Exception as e: 
-            print(e)
+            messagebox.showerror('ERROR', e)
 
     
     def get_weather_from_coordinates(self, lat, lon): 
@@ -115,8 +113,9 @@ class AddressInterface:
         try: 
             weather_data = weather.get_weather_api_data()
             print(weather_data)
+            return weather_data
         except Exception as e: 
-            print(e)
+            messagebox.showerror('ERROR', e)
 
 
     def __create_form_entry(self, parent, entry_variable: StringVar, rowposition: int): 
