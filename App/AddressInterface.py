@@ -13,22 +13,26 @@ class AddressInterface:
     address = None
 
     def __init__(self, root):
+        # API data
         self.weather_data = None
         
+        # root window 
         self.root = root 
 
+        # Frame to render widgets in root window
         mainframe = ttk.Frame(self.root)
-        mainframe['padding'] = 20   # padding inside frame 
+        mainframe['padding'] = 20  
         mainframe.grid(column=0, row=0, sticky=(N, S, E, W))
 
         # Expand the frame if the window is resized
         self.root.columnconfigure(0, weight = 1)
         self.root.rowconfigure(0, weight = 1)
 
-        # Heading Label
+        # Heading Label Style
         heading_label_style = ttk.Style()
         heading_label_style.configure("HL.TLabel", font = ('Arial', 15))   
 
+        # Heading Label
         heading_label = ttk.Label(mainframe, text = "Get weather information for your address", style="HL.TLabel")
         heading_label.grid(column = 0, row = 0, columnspan = 2, pady = 10)
 
@@ -36,13 +40,14 @@ class AddressInterface:
         label_style = ttk.Style()
         label_style.configure("LS.TLabel", font = ('Arial', 12))
 
+        # Create form labels
         self.__create_form_label(mainframe, "House Number ", 1)
         self.__create_form_label(mainframe, "Street Name ", 2)
         self.__create_form_label(mainframe, "Suburb ", 3)
         self.__create_form_label(mainframe, "State ", 4)
         self.__create_form_label(mainframe, "Postcode ", 5)
 
-        # house number entry 
+        # Creating input fields for fetching user address
         house_number = StringVar()
         house_number_entry = self.__create_form_entry(mainframe, house_number, 1)
         street_name = StringVar()
@@ -55,6 +60,7 @@ class AddressInterface:
         postcode_entry = self.__create_form_entry(mainframe, postcode, 5)
 
         def getAddress():
+            '''Processing user address on button click'''
             self.house_number = house_number_entry.get().strip().lower()
             
             # get the street name and format it
@@ -67,21 +73,21 @@ class AddressInterface:
             self.suburb = self.suburb.split()
             self.suburb = '+'.join(self.suburb)
 
+            # get the state and postcode and format it
             self.state = state_entry.get().strip().lower()
             self.postcode = postcode_entry.get().strip().lower()
-            
+
+            # format the address as a single string
             self.parse_address()
 
+            # calculate the latitude and longitude for the given address
             latitude, longitude = self.get_coordinates_from_address()
 
+            # get weather data for calculated latitude and longitude
             self.weather_data = self.get_weather_from_coordinates(latitude, longitude)
 
-            # print(f"House Number: {self.house_number}")
-            # print(f"Street Name: {self.street_name}")
-            # print(f"Suburb: {self.suburb}")
-            # print(f"State: {self.state}")
-            # print(f"Postcode: {self.postcode}")
-
+            # destroy the root window after fetching weather data 
+            # for the given address
             self.root.destroy()
 
         # Get Weather information button 
@@ -93,6 +99,7 @@ class AddressInterface:
         exit_button.grid(column = 1, row = 7)
     
     def parse_address(self): 
+        '''Parse the address in a single string'''
         if (self.house_number == '') or (self.street_name == '') or (self.suburb == '') or (self.state == ''):  
             messagebox.showerror('ERROR', "[ADDRESS]: Enter a valid address")
 
@@ -101,6 +108,7 @@ class AddressInterface:
 
 
     def get_coordinates_from_address(self): 
+        '''Calculate latitude and longitude for parsed address'''
         try: 
             geocode = Geocode()
             latitude, longitude = geocode.get_coordinates_from_address(self.address)
@@ -110,6 +118,7 @@ class AddressInterface:
 
     
     def get_weather_from_coordinates(self, lat, lon): 
+        '''Fetch weather API data from latitude and longitude'''
         weather = Weather(lat, lon)
         try: 
             weather_data = weather.get_weather_api_data()
@@ -120,6 +129,7 @@ class AddressInterface:
 
 
     def get_weather_data(self):
+        '''Getter for fetched API data'''
         return self.weather_data 
 
 

@@ -1,11 +1,13 @@
 from tkinter import * 
 from PIL import Image,ImageTk
-from urllib.request import urlopen
+
 
 class WeatherInterface: 
     def __init__(self, weather_data):
         self.weather_data = weather_data
         print(f"[WEATHERINTERFACE] Data Received")
+
+        # create root window to render Weather API data
         weather_root = Tk()
         weather_root.title("API Interface")
         weather_root.geometry("700x480")
@@ -21,16 +23,6 @@ class WeatherInterface:
         # location label 
         location=Label(text="",font=("Calibri",15,'bold'),bg='#00b7ff',fg='black')
         location.place(x = 30 ,y = 60)  
-        
-        # # creating the label for the logo according to main
-        # icon_url = urlopen(self.weather_data['image_icon_url'])
-        # print(f"Img URL: {self.weather_data['image_icon_url']}")
-        # raw_icon_data = icon_url.read()
-        # icon_url.close()
-
-        # img3 = ImageTk.PhotoImage(data = raw_icon_data)
-        # icons = Label(image = img3)
-        # icons.place(x=70,y=110)
 
         # creating the label to display the temperature
         temperature=Label(text="",font=("Cambria",75,'bold'))
@@ -87,6 +79,7 @@ class WeatherInterface:
         # exit and reset button
         Button(text='Exit',font=("Georgia",16,"bold"),bg='orange',fg='black',width=7,relief='groove',command=weather_root.destroy).place(x=580,y=420)
 
+        # update the text for labels 
         feel['text'] = f"Feels Like {self.weather_data['feels_like']}° | {self.weather_data['weather']}"
         timelbl['text'] = f"{self.weather_data['location_datetime']}"
         temperature['text'] = f"{self.weather_data['temp']} ºC"
@@ -98,7 +91,5 @@ class WeatherInterface:
         sunrise['text'] = f"{self.weather_data['sunrise']}"
         sunset['text'] = f"{self.weather_data['sunset']}"
 
+        # event loop for API Interface window
         weather_root.mainloop()
-
-
-# WeatherInterface()

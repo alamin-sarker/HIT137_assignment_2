@@ -1,11 +1,12 @@
 import requests
 
+
 class Geocode: 
     def __init__(self):
         self.API_KEY = "AIzaSyB4KZkzjMoyfx0w2jIq-xk9uIbGeIwehn8" 
         self.base_url = "https://maps.googleapis.com/maps/api/geocode/json"
 
-    # default address -> "1600+Amphitheatre+Parkway,+Mountain+View,+CA"
+    # default address -> "NT"
     # https://maps.googleapis.com/maps/api/geocode/json?address=1600+Amphitheatre+Parkway,+Mountain+View,+CA&key=AIzaSyB4KZkzjMoyfx0w2jIq-xk9uIbGeIwehn8
     def get_coordinates_from_address(self, address="NT"):
         response = self.__get_geocode_api_response(address) 
