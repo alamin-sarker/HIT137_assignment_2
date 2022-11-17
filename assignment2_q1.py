@@ -1,3 +1,16 @@
+""" HIT137 Assignment 2 Group 74 """
+####
+# Group 74
+
+# STUDENT NAME: MD AL AMIN SARKER
+# STUDENT NUMBER: S361035
+
+# STUDENT NAME: SHIVA GUPTA
+# STUDENT NUMBER: S361033
+
+# Youtube link: https://youtu.be/A9fN7cfdNp8
+####
+
 from turtle import*  # importing turtle library
 import random       # importing random to generate stars
 
@@ -8,7 +21,7 @@ def setup_drawing_board():
     setup(1000, 700)  # screen or window size width=1000, height=700
     speed(0)        # speed of the turtle | (‘fastest’ :  0), range 0-10
     bgcolor("black")  # background color for window
-    title("Starry night in the mountain") # title for trutle window
+    title("Starry Night On The Mountain") # title for trutle window
 
 
 def draw_land():
