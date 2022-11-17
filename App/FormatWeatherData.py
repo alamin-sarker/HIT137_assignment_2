@@ -2,6 +2,7 @@ from timezonefinder import TimezoneFinder
 import pytz
 import datetime
 
+
 class FormatWeatherData: 
     def __init__(self, weather_data):
         self.weather_data = weather_data
@@ -11,6 +12,7 @@ class FormatWeatherData:
 
 
     def format_data(self): 
+        '''Format weather API data into a dictionary'''
         self.data['weather'] = self.weather_data['weather'][0]['main']
         self.data['description'] = self.weather_data['weather'][0]['description']
         self.data['temp'] = int(self.weather_data['main']['temp'] - 273)
@@ -23,15 +25,18 @@ class FormatWeatherData:
         self.data['longitude'] = lon
         self.data['latitude'] = lat
 
+        # find the timezone for the given lat and longitude
         timezonefinder = TimezoneFinder()
         timezone = timezonefinder.timezone_at(lng=lon, lat = lat)  # tf.timezone_at(lng=13.358, lat=52.5061)  # 'Europe/Berlin'
         self.data['timezone'] = timezone
 
+        # Calculate the location timezone
         location = pytz.timezone(timezone)
         location_datetime = datetime.datetime.now(location).strftime("%d/%m/%y  %I:%M %p")
         self.data['location'] = location
         self.data['location_datetime'] = location_datetime
 
+        # Calculate sunrise and sunset datetime
         sunrise = datetime.datetime.fromtimestamp(int(self.weather_data['sys']['sunrise'])).strftime('%d/%m/%y  %I:%M %p') 
         sunset = datetime.datetime.fromtimestamp(int(self.weather_data['sys']['sunset'])).strftime('%d/%m/%y  %I:%M %p') 
         self.data['sunrise'] = sunrise 
