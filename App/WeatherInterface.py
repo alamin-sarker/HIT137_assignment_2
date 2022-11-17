@@ -15,7 +15,7 @@ class WeatherInterface:
         Label(text="Current Weather :",font='Arial 14 bold',fg="red").place(x=590,y=7)
 
         # location image logo 
-        img2 = Image.open(r'Images/location.png')
+        img2 = Image.open(r'Images/location.png') #/Users/alaminsarker/Documents/HIT137_assignment_2/App/Images/location.png
         resizeimg2 = img2.resize((20,20))
         finalimg2 =ImageTk.PhotoImage(resizeimg2)
         Label(image = finalimg2).place(x=595,y=36)
