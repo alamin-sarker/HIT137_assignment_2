@@ -28,26 +28,5 @@ class DailyWeather:
         self.weather_interface = WeatherInterface(self.data) 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 if __name__ == "__main__":
     d = DailyWeather()

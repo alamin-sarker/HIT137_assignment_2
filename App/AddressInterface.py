@@ -3,7 +3,6 @@ from tkinter import ttk
 from tkinter import messagebox
 from Geocode import Geocode
 from Weather import Weather
-from WeatherInterface import WeatherInterface
 
 class AddressInterface:
     house_number = None
