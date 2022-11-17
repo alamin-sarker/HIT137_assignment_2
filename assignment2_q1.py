@@ -8,6 +8,7 @@ def setup_drawing_board():
     setup(1000, 700)  # screen or window size width=1000, height=700
     speed(0)        # speed of the turtle | (‘fastest’ :  0), range 0-10
     bgcolor("black")  # background color for window
+    title("Starry night in the mountain") # title for trutle window
 
 
 def draw_land():
