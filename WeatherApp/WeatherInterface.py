@@ -16,7 +16,8 @@ class WeatherInterface:
         weather_root.resizable(False, False)
 
         # bottom bar
-        finalimg6=ImageTk.PhotoImage(image=Image.open(r'/Users/alaminsarker/Documents/HIT137_assignment_2/WeatherApp/Images/bottom_bar.png').resize((770,70)))
+        # mac absulute path: /Users/alaminsarker/Documents/HIT137_assignment_2/WeatherApp/Images/bottom_bar.png
+        finalimg6=ImageTk.PhotoImage(image=Image.open(r'/Images/bottom_bar.png').resize((770,70)))
         Label(image=finalimg6,bg='#00b7ff').place(x = 5, y = 35)
 
         # creating the current weather label to display the city name and city time
@@ -53,7 +54,8 @@ class WeatherInterface:
         sunset.place(x = 500, y = 60)
 
         # bottom bar
-        finalimg6=ImageTk.PhotoImage(image=Image.open(r'/Users/alaminsarker/Documents/HIT137_assignment_2/WeatherApp/Images/bottom_bar.png').resize((770,70)))
+        # /Users/alaminsarker/Documents/HIT137_assignment_2/WeatherApp/Images/bottom_bar.png
+        finalimg6=ImageTk.PhotoImage(image=Image.open(r'/Images/bottom_bar.png').resize((770,70)))
         Label(image=finalimg6,bg='#00b7ff').place(x=5,y=330)
 
         # placing the labels

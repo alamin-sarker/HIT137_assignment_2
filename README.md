@@ -1,7 +1,7 @@
 # HIT137 Assignment 2
 
 ## Question 1: Create a program using turtle
-Drawing starry night, moon, mountain, trees using Python Turtle
+Drawing starry night, moon, mountains, trees using Python Turtle
 
 Python Library used:
 1. pip install turtle
@@ -22,4 +22,4 @@ Python Libraries used:
 3. pip install timezonefinder 
 4. pip install pytz
 
-Youtube Link: Youtube link: https://youtu.be/EQCzxKP5src
+Youtube link: https://youtu.be/EQCzxKP5src
