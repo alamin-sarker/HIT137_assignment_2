@@ -1,4 +1,4 @@
-# HIT137_assignment_2
+# HIT137 Assignment 2
 
 ## Question 1: Create a program using turtle
 Drawing starry night, moon, mountain, trees using Python Turtle
