@@ -5,6 +5,7 @@ from Geocode import Geocode
 from Weather import Weather
 
 class AddressInterface:
+    """ Getting address info from User """
     house_number = None
     street_name = None
     suburb = None
@@ -133,19 +134,21 @@ class AddressInterface:
         return self.weather_data 
 
 
-    def __create_form_entry(self, parent, entry_variable: StringVar, rowposition: int): 
-            entry_variable = StringVar()
-            entry = ttk.Entry(parent, textvariable = entry_variable)
-            entry.grid(column = 1, row = rowposition, sticky = (W), pady = 5)
+    def __create_form_entry(self, parent, entry_variable: StringVar, rowposition: int):
+        """ Creating form entry """
+        entry_variable = StringVar()
+        entry = ttk.Entry(parent, textvariable = entry_variable)
+        entry.grid(column = 1, row = rowposition, sticky = (W), pady = 5)
 
-            return entry_variable
+        return entry_variable
 
 
     def __create_form_label(self, parent, label_name: str, row_position: int): 
-            label = ttk.Label(parent, text = label_name, style = "LS.TLabel")
-            label.grid(column = 0, row = row_position, sticky = (E), pady = 5)
+        """Creating form Label"""
+        label = ttk.Label(parent, text = label_name, style = "LS.TLabel")
+        label.grid(column = 0, row = row_position, sticky = (E), pady = 5)
 
-            return label
+        return label
 
 
 

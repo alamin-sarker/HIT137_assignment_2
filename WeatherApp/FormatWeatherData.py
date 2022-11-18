@@ -4,6 +4,8 @@ import datetime
 
 
 class FormatWeatherData: 
+    """Formating the weather data in required/readable format for visualization"""
+
     def __init__(self, weather_data):
         self.weather_data = weather_data
         self.data = {}
@@ -11,8 +13,9 @@ class FormatWeatherData:
         print(f"Visibility: {self.weather_data['visibility'] / 1000}")
 
 
-    def format_data(self): 
+    def format_data(self):
         '''Format weather API data into a dictionary'''
+
         self.data['weather'] = self.weather_data['weather'][0]['main']
         self.data['description'] = self.weather_data['weather'][0]['description']
         self.data['temp'] = int(self.weather_data['main']['temp'] - 273)

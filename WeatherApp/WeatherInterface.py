@@ -3,18 +3,20 @@ from PIL import Image,ImageTk
 
 
 class WeatherInterface: 
+    """Creating weather interface with data from openweather API"""
+
     def __init__(self, weather_data):
         self.weather_data = weather_data
         print(f"[WEATHERINTERFACE] Data Received")
 
-        # create root window to render Weather API data
+        # creating root window to render Weather API data
         weather_root = Tk()
         weather_root.title("API Interface")
         weather_root.geometry("700x480")
         weather_root.resizable(False, False)
 
         # bottom bar
-        finalimg6=ImageTk.PhotoImage(image=Image.open(r'/Users/alaminsarker/Documents/HIT137_assignment_2/WheatherApp/Images/bottom_bar.png').resize((770,70)))  # 
+        finalimg6=ImageTk.PhotoImage(image=Image.open(r'/Users/alaminsarker/Documents/HIT137_assignment_2/WeatherApp/Images/bottom_bar.png').resize((770,70)))
         Label(image=finalimg6,bg='#00b7ff').place(x = 5, y = 35)
 
         # creating the current weather label to display the city name and city time
@@ -51,7 +53,7 @@ class WeatherInterface:
         sunset.place(x = 500, y = 60)
 
         # bottom bar
-        finalimg6=ImageTk.PhotoImage(image=Image.open(r'/Users/alaminsarker/Documents/HIT137_assignment_2/WheatherApp/Images/bottom_bar.png').resize((770,70)))
+        finalimg6=ImageTk.PhotoImage(image=Image.open(r'/Users/alaminsarker/Documents/HIT137_assignment_2/WeatherApp/Images/bottom_bar.png').resize((770,70)))
         Label(image=finalimg6,bg='#00b7ff').place(x=5,y=330)
 
         # placing the labels

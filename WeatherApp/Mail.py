@@ -1,3 +1,9 @@
+###
+# We were planning to send real time weather report to user 
+# but currently not inrigated in our App due to time constraints, 
+# we will do that later
+###
+
 import smtplib
 import ssl
 from email.message import EmailMessage

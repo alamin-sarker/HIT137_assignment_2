@@ -4,7 +4,9 @@ from FormatWeatherData import FormatWeatherData
 from tkinter import * 
 
 
-class DailyWeather: 
+class DailyWeather:
+    """ Creating the Weather App """
+    
     def __init__(self):
         self.data = {}  # dict for formatted weather data
 
